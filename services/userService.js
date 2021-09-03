@@ -6,6 +6,11 @@ const CustomError = require('../utils/custom-error');
 const Password = require('./password');
 
 exports.createUser = async (username, email, password) => {
+    /**
+     * Creates new user in database with given credentials
+     * @param username, email, password
+     * @returns user (newly created)
+    **/
     var user = await User.findOne({email}).exec();
     if(user) {
         throw new CustomError('Email already exists');
@@ -29,6 +34,12 @@ exports.createUser = async (username, email, password) => {
 
 
 exports.generateToken = async (email, password) => {
+    /** 
+     * Validates user credentials and generates jwt token 
+     * 
+     * @param email, password
+     * @return {token, user}
+    **/
     var user = await User.findOne({email}).exec();
 
     if(!user) {

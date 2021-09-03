@@ -1,5 +1,6 @@
 const {scrypt, randomBytes} = require('crypto');
 
+
 module.exports = class Password {
     static async hash(password) {
         const salt = randomBytes(16).toString('hex');
