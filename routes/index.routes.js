@@ -1,0 +1,12 @@
+const express = require('express');
+const { showHome } = require('../controllers/index.controllers');
+const auth = require('../middlewares/auth');
+
+const router = express.Router();
+
+router.get('/', (req, res) => {
+    res.status(200).send('index');
+});
+
+router.get('/home', auth, showHome);
+module.exports = router;
